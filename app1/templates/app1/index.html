@@ -1,0 +1,23 @@
+{% extends 'app1/base.html' %}
+
+{% block content %}
+<h1>Котики - украшение дома!</h1>
+<ul class="list-articles">
+	{% for cat in object_list %}
+			<li><div class="article-panel">
+				<p class="first">Порода: {{cat.breed}}</p>
+			</div></li>
+			{% if cat.image %}
+			<p><img class="img-article-left thumb" src="{{cat.image.url}}"></p>
+			{% endif %}
+
+			<li><h2>{{cat.name}}</h2>
+	{% autoescape on %}
+	{{cat.content|linebreaks|truncatewords:50}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ cat.get_absolute_url }}">Смотреть котика</a></p>
+			</li>
+	{% endfor %}
+</ul>
+{% endblock %}
