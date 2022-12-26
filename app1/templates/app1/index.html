@@ -12,12 +12,13 @@
 			{% endif %}
 
 			<li><h2>{{cat.name}}</h2>
+			<li><h4>{{cat.about_cat}}</h4>
 	{% autoescape on %}
 	{{cat.content|linebreaks|truncatewords:50}}
 	{% endautoescape %}
 			<div class="clear"></div>
 			<p class="link-read-post"><a href="{{ cat.get_absolute_url }}">Смотреть котика</a></p>
-			</li>
+			</h3>
 	{% endfor %}
 </ul>
 {% endblock %}

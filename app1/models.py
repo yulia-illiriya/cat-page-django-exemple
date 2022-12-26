@@ -22,7 +22,6 @@ class Cat(models.Model):
         ("f", "female")
         ]
 
-
     name = models.CharField("Имя питомца", max_length=254)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     image = models.ImageField("Photo", upload_to="photos/%Y/%m/%d/", blank=True)
@@ -30,6 +29,7 @@ class Cat(models.Model):
     is_available = models.BooleanField("Is available", default=False)
     breed = models.ForeignKey(Breed, verbose_name="Порода", on_delete=models.PROTECT)
     gender = models.CharField(max_length=1, choices=GENDER_CAT, default='f')
+    about_cat = models.TextField("About this cat", null=True, max_length=1000)
 
     def __str__(self):
         return self.name

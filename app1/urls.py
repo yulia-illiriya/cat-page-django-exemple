@@ -5,7 +5,7 @@ from .views import *
 urlpatterns = [
     path('', CatHome.as_view(), name='home'),
     path('about/', about, name='about'),
-    path('addpage/', AddCat.as_view, name='add_cat'),
+    path('addpage/', AddCat.as_view(), name='add_cat'),
     path('contact/', contact, name='contact'),
     path('login/', login, name='login'),
     path('cats/<slug:cat_slug>/', ShowCat.as_view(), name='cat'),

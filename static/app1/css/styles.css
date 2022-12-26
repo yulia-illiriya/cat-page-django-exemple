@@ -103,7 +103,7 @@ ul.mainmenu li.logo {margin: 0;}
 ul.mainmenu li.last {float: right;}
 
 ul.mainmenu li a {
-	color: #fdc073;
+	color: #362005;
 	text-decoration: none;
 }
 ul.mainmenu li a:hover {
@@ -268,6 +268,14 @@ ul.content-table li a:hover {color: #F0711C;}
 	font-family: Yandex Sans Display Light;
 }
 .content-text h1 {font-size: 32px;}
+
+h4 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: #022d58;
+	font-weight: normal;
+	border-radius: 15%;
+	border-color: #444;	 
+}
 
 ul.lang-list {
 	list-style: none;
