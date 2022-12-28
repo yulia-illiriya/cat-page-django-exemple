@@ -7,7 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Breed, Cat, Article
-from .forms import AddCatForm
+from .forms import AddCatForm, RegisterUserForm
 from .utils import *
 
 class CatHome(DataMixin, ListView):
@@ -51,6 +51,9 @@ def contact(request):
 def login(request):
     return HttpResponse("Авторизация")
 
+def register(request):
+    return HttpResponse("Register")
+
 
 class BreedCategory(DataMixin, ListView):
     model = Cat
@@ -75,4 +78,14 @@ class ShowCat(DataMixin, DetailView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title=context['cat'])
         return dict(list(context.items()) + list(c_def.items()))
+
+class RegisterUser(DataMixin, CreateView):
+    form_class = RegisterUserForm
+    template_name = 'app1/register.html'
+    success_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Регистрация")
+        return context | c_def
 

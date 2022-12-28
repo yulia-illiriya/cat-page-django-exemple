@@ -4,7 +4,6 @@ menu = [
     {'title': "О сайте", 'url_name': 'about'},
     {'title': "Добавить котика", 'url_name': 'add_cat'},
     {'title': "Обратная связь", 'url_name': 'contact'}, 
-    {'title': "Войти", 'url_name': 'login'}
     ]
 
 class DataMixin:
