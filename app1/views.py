@@ -5,9 +5,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
+
 
 from .models import Breed, Cat, Article
-from .forms import AddCatForm, RegisterUserForm
+from .forms import AddCatForm, RegisterUserForm, LoginUserForm
 from .utils import *
 
 class CatHome(DataMixin, ListView):
@@ -48,13 +51,6 @@ class AddCat(LoginRequiredMixin, DataMixin, CreateView):
 def contact(request):
     return HttpResponse("Обратная связь")
 
-def login(request):
-    return HttpResponse("Авторизация")
-
-def register(request):
-    return HttpResponse("Register")
-
-
 class BreedCategory(DataMixin, ListView):
     model = Cat
     template_name = 'app1/index.html'
@@ -88,4 +84,17 @@ class RegisterUser(DataMixin, CreateView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title="Регистрация")
         return context | c_def
+
+
+class LoginUser(DataMixin, LoginView): 
+    form_class = LoginUserForm
+    template_name = 'app1/login.html'
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Авторизация")
+        return context | c_def
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('home')
 
